@@ -1,0 +1,52 @@
+version: "3.3"
+
+services:
+  plibrary:
+    image: docker-registry.guarico.gob.ve/project_library:latest
+    restart: unless-stopped
+    ports:
+      - "7504:4200"
+    depends_on:
+      - plibrary_db
+    environment:
+      - DATABASE_URL=postgresql://postgres:yepweyq@plibrary_db:5432/project_library
+      - HOST_URL=https://project-library.guarico.gob.ve
+    volumes:
+      - plibrary-static:/app/static
+    networks:
+      plibrary-network:
+        ipv4_address: "183.19.0.3"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://183.19.0.3:4200/api/healthcheck"]
+      interval: 5s
+      timeout: 10s
+      retries: 2
+    links:
+      - plibrary_db
+  plibrary_db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: yepweyq
+      POSTGRES_DB: project_library
+    volumes:
+      - plibrary-db-data:/var/lib/postgresql/data
+    ports:
+      - "7505:5432"
+    networks:
+      plibrary-network:
+        ipv4_address: "183.19.0.2"
+
+networks:
+  plibrary-network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: "183.19.0.0/16"
+volumes:
+  plibrary-db-data:
+    driver: local
+  plibrary-static:
+    driver: local
