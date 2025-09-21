@@ -10,7 +10,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Build image
-        run: docker build . -t docker-registry.guarico.gob.ve/API_project_managament:latest
+        run: docker build . -t docker-registry.guarico.gob.ve/api_project_managament:latest
       - name: push image to Docker Registry
         run: |
-          docker push docker-registry.guarico.gob.ve/API_project_managament:latest
+          docker push docker-registry.guarico.gob.ve/api_project_managament:latest

@@ -1,13 +1,13 @@
 services:
   pmanagament:
-    image: docker-registry.guarico.gob.ve/API_project_managament:latest
+    image: docker-registry.guarico.gob.ve/api_project_managament:latest
     restart: unless-stopped
     ports:
       - "7102:4200"
     depends_on:
       - pmanagament_db
     environment:
-      - DATABASE_URL=postgresql://postgres:yepweyq@pmanagament_db:5432/API_project_managament
+      - DATABASE_URL=postgresql://postgres:yepweyq@pmanagament_db:5432/api_project_managament
       - HOST_URL=https://api-gestiondeproyectos.guarico.gob.ve
     volumes:
       - pmanagament-static:/app/static
