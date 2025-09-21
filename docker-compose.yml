@@ -13,7 +13,7 @@ services:
       - pmanagament-static:/app/static
     networks:
       pmanagament-network:
-        ipv4_address: "183.19.0.3"
+        ipv4_address: "188.19.0.3"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://183.19.0.3:4200/api/healthcheck"]
       interval: 5s
@@ -34,7 +34,7 @@ services:
       - "7103:5432"
     networks:
       pmanagament-network:
-        ipv4_address: "183.19.0.2"
+        ipv4_address: "188.19.0.2"
 
 networks:
   pmanagament-network:
@@ -42,7 +42,7 @@ networks:
     ipam:
       driver: default
       config:
-        - subnet: "183.19.0.0/16"
+        - subnet: "188.19.0.0/16"
 volumes:
   pmanagament-db-data:
     driver: local
