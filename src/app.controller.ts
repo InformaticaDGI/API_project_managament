@@ -23,7 +23,7 @@ export class AppController {
       () =>
         this.http.responseCheck(
           'project endpoint',
-          'http://localhost:4200/api/project',
+          'http://localhost:4200/project',
           (res) => res.status === 200,
         ),
 
