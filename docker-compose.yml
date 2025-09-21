@@ -15,7 +15,7 @@ services:
       pmanagament-network:
         ipv4_address: "188.19.0.3"
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://183.19.0.3:4200/api/healthcheck"]
+      test: ["CMD", "curl", "-f", "http://188.19.0.3:4200/api/healthcheck"]
       interval: 5s
       timeout: 10s
       retries: 2
